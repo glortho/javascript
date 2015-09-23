@@ -1455,64 +1455,6 @@ Other Style Guides
         .call(tron.led);
     ```
 
-  - [18.7](#18.7) <a name='18.7'></a> Leave a blank line after blocks and before the next statement.
-
-    ```javascript
-    // bad
-    if (foo) {
-      return bar;
-    }
-    return baz;
-
-    // good
-    if (foo) {
-      return bar;
-    }
-
-    return baz;
-
-    // bad
-    const obj = {
-      foo() {
-      },
-      bar() {
-      },
-    };
-    return obj;
-
-    // good
-    const obj = {
-      foo() {
-      },
-
-      bar() {
-      },
-    };
-
-    return obj;
-
-    // bad
-    const arr = [
-      function foo() {
-      },
-      function bar() {
-      },
-    ];
-    return arr;
-
-    // good
-    const arr = [
-      function foo() {
-      },
-
-      function bar() {
-      },
-    ];
-
-    return arr;
-    ```
-
-
 **[⬆ back to top](#table-of-contents)**
 
 ## Commas
@@ -1794,7 +1736,7 @@ Other Style Guides
     }
     ```
 
-  - [22.6](#22.6) <a name='22.6'></a> If your file exports a single class, your filename should be exactly the name of the class.
+  - [22.6](#22.6) <a name='22.6'></a> If your file exports a single class, your filename should be the snake_case version of the class name.
     ```javascript
     // file contents
     class CheckBox {
@@ -1807,10 +1749,11 @@ Other Style Guides
     import CheckBox from './checkBox';
 
     // bad
-    import CheckBox from './check_box';
+    import CheckBox from './CheckBox';
 
     // good
-    import CheckBox from './CheckBox';
+    import CheckBox from './check_box';
+
     ```
 
   - [22.7](#22.7) <a name='22.7'></a> Use camelCase when you export-default a function. Your filename should be identical to your function's name.
