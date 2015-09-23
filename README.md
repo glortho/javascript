@@ -248,9 +248,10 @@ Other Style Guides
     };
     ```
 
-  - [3.7](#3.7) <a name='3.7'></a> Group your shorthand properties at the beginning of your object declaration.
+  - [3.7](#3.7) <a name='3.7'></a> Group your shorthand properties at the end of your object declaration.
 
-  > Why? It's easier to tell which properties are using the shorthand.
+  > Why? It's easier to tell which properties are using the shorthand, and the
+  > configurable properties are prioritized above the pass-through properties.
 
     ```javascript
     const anakinSkywalker = 'Anakin Skywalker';
@@ -258,22 +259,22 @@ Other Style Guides
 
     // bad
     const obj = {
+      anakinSkywalker,
       episodeOne: 1,
       twoJediWalkIntoACantina: 2,
       lukeSkywalker,
       episodeThree: 3,
       mayTheFourth: 4,
-      anakinSkywalker,
     };
 
     // good
     const obj = {
-      lukeSkywalker,
-      anakinSkywalker,
       episodeOne: 1,
       twoJediWalkIntoACantina: 2,
       episodeThree: 3,
       mayTheFourth: 4,
+      lukeSkywalker,
+      anakinSkywalker,
     };
     ```
 
