@@ -2,15 +2,6 @@
 
 *A mostly reasonable approach to JavaScript, based on the Airbnb styleguide.*
 
-[![Downloads](https://img.shields.io/npm/dm/eslint-config-airbnb.svg)](https://www.npmjs.com/package/eslint-config-airbnb)
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/airbnb/javascript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-
-Other Style Guides
- - [ES5](es5/)
- - [React](react/)
- - [CSS & Sass](https://github.com/airbnb/css)
- - [Ruby](https://github.com/airbnb/ruby)
-
 ## Table of Contents
 
   1. [Types](#types)
@@ -66,7 +57,7 @@ Other Style Guides
 
     bar = 9;
 
-    console.log(foo, bar); // => 1, 9
+    console.log( foo, bar ); // => 1, 9
     ```
   - [1.2](#1.2) <a name='1.2'></a> **Complex**: When you access a complex type you work on a reference to its value.
 
@@ -80,7 +71,7 @@ Other Style Guides
 
     bar[0] = 9;
 
-    console.log(foo[0], bar[0]); // => 9, 9
+    console.log( foo[0], bar[0] ); // => 9, 9
     ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -108,13 +99,13 @@ Other Style Guides
     ```javascript
     // bad
     var count = 1;
-    if (true) {
+    if ( true ) {
       count += 1;
     }
 
     // good, use the let.
     let count = 1;
-    if (true) {
+    if ( true ) {
       count += 1;
     }
     ```
@@ -127,8 +118,8 @@ Other Style Guides
       let a = 1;
       const b = 1;
     }
-    console.log(a); // ReferenceError
-    console.log(b); // ReferenceError
+    console.log( a ); // ReferenceError
+    console.log( b ); // ReferenceError
     ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -187,7 +178,7 @@ Other Style Guides
 
     ```javascript
 
-    function getKey(k) {
+    function getKey( k ) {
       return `a key named ${k}`;
     }
 
@@ -196,13 +187,13 @@ Other Style Guides
       id: 5,
       name: 'San Francisco',
     };
-    obj[getKey('enabled')] = true;
+    obj[ getKey( 'enabled' ) ] = true;
 
     // good
     const obj = {
       id: 5,
       name: 'San Francisco',
-      [getKey('enabled')]: true,
+      [ getKey( 'enabled' ) ]: true,
     };
     ```
 
@@ -214,7 +205,7 @@ Other Style Guides
     const atom = {
       value: 1,
 
-      addValue: function (value) {
+      addValue: function ( value ) {
         return atom.value + value;
       },
     };
@@ -223,7 +214,7 @@ Other Style Guides
     const atom = {
       value: 1,
 
-      addValue(value) {
+      addValue( value ) {
         return atom.value + value;
       },
     };
@@ -298,10 +289,10 @@ Other Style Guides
     const someStack = [];
 
     // bad
-    someStack[someStack.length] = 'abracadabra';
+    someStack[ someStack.length ] = 'abracadabra';
 
     // good
-    someStack.push('abracadabra');
+    someStack.push( 'abracadabra' );
     ```
 
   <a name="es6-array-spreads"></a>
@@ -314,17 +305,17 @@ Other Style Guides
     let i;
 
     for (i = 0; i < len; i++) {
-      itemsCopy[i] = items[i];
+      itemsCopy[ i ] = items[ i ];
     }
 
     // good
-    const itemsCopy = [...items];
+    const itemsCopy = [ ...items ];
     ```
   - [4.4](#4.4) <a name='4.4'></a> To convert an array-like object to an array, use Array#from.
 
     ```javascript
-    const foo = document.querySelectorAll('.foo');
-    const nodes = Array.from(foo);
+    const foo = document.querySelectorAll( '.foo' );
+    const nodes = Array.from( foo );
     ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -337,7 +328,7 @@ Other Style Guides
 
     ```javascript
     // bad
-    function getFullName(user) {
+    function getFullName( user ) {
       const firstName = user.firstName;
       const lastName = user.lastName;
 
@@ -345,13 +336,13 @@ Other Style Guides
     }
 
     // good
-    function getFullName(obj) {
+    function getFullName( obj ) {
       const { firstName, lastName } = obj;
       return `${firstName} ${lastName}`;
     }
 
     // best
-    function getFullName({ firstName, lastName }) {
+    function getFullName( { firstName, lastName } ) {
       return `${firstName} ${lastName}`;
     }
     ```
@@ -359,14 +350,14 @@ Other Style Guides
   - [5.2](#5.2) <a name='5.2'></a> Use array destructuring.
 
     ```javascript
-    const arr = [1, 2, 3, 4];
+    const arr = [ 1, 2, 3, 4 ];
 
     // bad
     const first = arr[0];
     const second = arr[1];
 
     // good
-    const [first, second] = arr;
+    const [ first, second ] = arr;
     ```
 
   - [5.3](#5.3) <a name='5.3'></a> Use object destructuring for multiple return values, not array destructuring.
@@ -375,22 +366,22 @@ Other Style Guides
 
     ```javascript
     // bad
-    function processInput(input) {
+    function processInput( input ) {
       // then a miracle occurs
-      return [left, right, top, bottom];
+      return [ left, right, top, bottom ];
     }
 
     // the caller needs to think about the order of return data
-    const [left, __, top] = processInput(input);
+    const [ left, __, top ] = processInput( input );
 
     // good
-    function processInput(input) {
+    function processInput( input ) {
       // then a miracle occurs
       return { left, right, top, bottom };
     }
 
     // the caller selects only the data they need
-    const { left, right } = processInput(input);
+    const { left, right } = processInput( input );
     ```
 
 
@@ -434,17 +425,17 @@ Other Style Guides
 
     ```javascript
     // bad
-    function sayHi(name) {
+    function sayHi( name ) {
       return 'How are you, ' + name + '?';
     }
 
     // bad
-    function sayHi(name) {
-      return ['How are you, ', name, '?'].join();
+    function sayHi( name ) {
+      return [ 'How are you, ', name, '?' ].join();
     }
 
     // good
-    function sayHi(name) {
+    function sayHi( name ) {
       return `How are you, ${name}?`;
     }
     ```
@@ -474,7 +465,7 @@ Other Style Guides
     ```javascript
     // immediately-invoked function expression (IIFE)
     (() => {
-      console.log('Welcome to the Internet. Please follow me.');
+      console.log( 'Welcome to the Internet. Please follow me.' );
     })();
     ```
 
@@ -483,17 +474,17 @@ Other Style Guides
 
     ```javascript
     // bad
-    if (currentUser) {
+    if ( currentUser ) {
       function test() {
-        console.log('Nope.');
+        console.log( 'Nope.' );
       }
     }
 
     // good
     let test;
-    if (currentUser) {
+    if ( currentUser ) {
       test = () => {
-        console.log('Yup.');
+        console.log( 'Yup.' );
       };
     }
     ```
@@ -502,12 +493,12 @@ Other Style Guides
 
     ```javascript
     // bad
-    function nope(name, options, arguments) {
+    function nope( name, options, arguments ) {
       // ...stuff...
     }
 
     // good
-    function yup(name, options, args) {
+    function yup( name, options, args ) {
       // ...stuff...
     }
     ```
@@ -520,13 +511,13 @@ Other Style Guides
     ```javascript
     // bad
     function concatenateAll() {
-      const args = Array.prototype.slice.call(arguments);
-      return args.join('');
+      const args = Array.prototype.slice.call( arguments );
+      return args.join( '' );
     }
 
     // good
-    function concatenateAll(...args) {
-      return args.join('');
+    function concatenateAll( ...args ) {
+      return args.join( '' );
     }
     ```
 
@@ -535,7 +526,7 @@ Other Style Guides
 
     ```javascript
     // really bad
-    function handleThings(opts) {
+    function handleThings( opts ) {
       // No! We shouldn't mutate function arguments.
       // Double bad: if opts is falsy it'll be set to an object which may
       // be what you want but it can introduce subtle bugs.
@@ -544,15 +535,15 @@ Other Style Guides
     }
 
     // still bad
-    function handleThings(opts) {
-      if (opts === void 0) {
+    function handleThings( opts ) {
+      if ( opts === void 0 ) {
         opts = {};
       }
       // ...
     }
 
     // good
-    function handleThings(opts = {}) {
+    function handleThings( opts = {} ) {
       // ...
     }
     ```
@@ -564,8 +555,8 @@ Other Style Guides
   ```javascript
   var b = 1;
   // bad
-  function count(a = b++) {
-    console.log(a);
+  function count( a = b++ ) {
+    console.log( a );
   }
   count();  // 1
   count();  // 2
@@ -577,12 +568,12 @@ Other Style Guides
 
     ```javascript
     // bad
-    function handleThings(opts = {}, name) {
+    function handleThings( opts = {}, name ) {
       // ...
     }
 
     // good
-    function handleThings(name, opts = {}) {
+    function handleThings( name, opts = {} ) {
       // ...
     }
     ```
@@ -593,10 +584,10 @@ Other Style Guides
 
   ```javascript
   // bad
-  var add = new Function('a', 'b', 'return a + b');
+  var add = new Function( 'a', 'b', 'return a + b' );
 
   // still bad
-  var subtract = Function('a', 'b', 'return a - b');
+  var subtract = Function( 'a', 'b', 'return a - b' );
   ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -611,13 +602,13 @@ Other Style Guides
 
     ```javascript
     // bad
-    [1, 2, 3].map(function (x) {
+    [ 1, 2, 3 ].map(function( x ) {
       const y = x + 1;
       return x * y;
     });
 
     // good
-    [1, 2, 3].map((x) => {
+    [ 1, 2, 3 ].map( x => {
       const y = x + 1;
       return x * y;
     });
@@ -631,16 +622,16 @@ Other Style Guides
 
     ```javascript
     // good
-    [1, 2, 3].map(number => `A string containing the ${number}.`);
+    [ 1, 2, 3 ].map( number => `A string containing the ${number}.` );
 
     // bad
-    [1, 2, 3].map(number => {
+    [1, 2, 3].map( number => {
       const nextNumber = number + 1;
       `A string containing the ${nextNumber}.`;
     });
 
     // good
-    [1, 2, 3].map(number => {
+    [ 1, 2, 3 ].map( number => {
       const nextNumber = number + 1;
       return `A string containing the ${nextNumber}.`;
     });
@@ -652,13 +643,13 @@ Other Style Guides
 
     ```js
     // bad
-    [1, 2, 3].map(number => 'As time went by, the string containing the ' +
+    [ 1, 2, 3 ].map( number => 'As time went by, the string containing the ' +
       `${number} became much longer. So we needed to break it over multiple ` +
       'lines.'
     );
 
     // good
-    [1, 2, 3].map(number => (
+    [ 1, 2, 3 ].map( number => (
       `As time went by, the string containing the ${number} became much ` +
       'longer. So we needed to break it over multiple lines.'
     ));
@@ -671,10 +662,10 @@ Other Style Guides
 
     ```js
     // good
-    [1, 2, 3].map(x => x * x);
+    [ 1, 2, 3 ].map( x => x * x );
 
     // good
-    [1, 2, 3].reduce((y, x) => x + y);
+    [ 1, 2, 3 ].reduce( ( y, x ) => x + y );
     ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -688,24 +679,24 @@ Other Style Guides
 
     ```javascript
     // bad
-    function Queue(contents = []) {
-      this._queue = [...contents];
+    function Queue( contents = [] ) {
+      this._queue = [ ...contents ];
     }
     Queue.prototype.pop = function() {
       const value = this._queue[0];
-      this._queue.splice(0, 1);
+      this._queue.splice( 0, 1 );
       return value;
     }
 
 
     // good
     class Queue {
-      constructor(contents = []) {
-        this._queue = [...contents];
+      constructor( contents = [] ) {
+        this._queue = [ ...contents ];
       }
       pop() {
         const value = this._queue[0];
-        this._queue.splice(0, 1);
+        this._queue.splice( 0, 1 );
         return value;
       }
     }
@@ -717,11 +708,11 @@ Other Style Guides
 
     ```javascript
     // bad
-    const inherits = require('inherits');
-    function PeekableQueue(contents) {
-      Queue.apply(this, contents);
+    const inherits = require( 'inherits' );
+    function PeekableQueue( contents ) {
+      Queue.apply( this, contents );
     }
-    inherits(PeekableQueue, Queue);
+    inherits( PeekableQueue, Queue );
     PeekableQueue.prototype.peek = function() {
       return this._queue[0];
     }
@@ -743,13 +734,13 @@ Other Style Guides
       return true;
     };
 
-    Jedi.prototype.setHeight = function(height) {
+    Jedi.prototype.setHeight = function( height ) {
       this.height = height;
     };
 
     const luke = new Jedi();
     luke.jump(); // => true
-    luke.setHeight(20); // => undefined
+    luke.setHeight( 20 ); // => undefined
 
     // good
     class Jedi {
@@ -758,7 +749,7 @@ Other Style Guides
         return this;
       }
 
-      setHeight(height) {
+      setHeight( height ) {
         this.height = height;
         return this;
       }
@@ -767,7 +758,7 @@ Other Style Guides
     const luke = new Jedi();
 
     luke.jump()
-      .setHeight(20);
+      .setHeight( 20 );
     ```
 
 
@@ -775,7 +766,7 @@ Other Style Guides
 
     ```javascript
     class Jedi {
-      constructor(options = {}) {
+      constructor( options = {} ) {
         this.name = options.name || 'no name';
       }
 
@@ -800,7 +791,7 @@ Other Style Guides
 
     ```javascript
     // bad
-    const AirbnbStyleGuide = require('./AirbnbStyleGuide');
+    const AirbnbStyleGuide = require( './AirbnbStyleGuide' );
     module.exports = AirbnbStyleGuide.es6;
 
     // ok
@@ -848,11 +839,11 @@ Other Style Guides
   > Why? This enforces our immutable rule. Dealing with pure functions that return values is easier to reason about than side-effects.
 
     ```javascript
-    const numbers = [1, 2, 3, 4, 5];
+    const numbers = [ 1, 2, 3, 4, 5 ];
 
     // bad
     let sum = 0;
-    for (let num of numbers) {
+    for ( let num of numbers ) {
       sum += num;
     }
 
@@ -860,11 +851,11 @@ Other Style Guides
 
     // good
     let sum = 0;
-    numbers.forEach((num) => sum += num);
+    numbers.forEach( num => sum += num );
     sum === 15;
 
     // best (use the functional force)
-    const sum = numbers.reduce((total, num) => total + num, 0);
+    const sum = numbers.reduce( ( total, num ) => total + num, 0 );
     sum === 15;
     ```
 
@@ -886,7 +877,7 @@ Other Style Guides
     };
 
     // bad
-    const isJedi = luke['jedi'];
+    const isJedi = luke[ 'jedi' ];
 
     // good
     const isJedi = luke.jedi;
@@ -900,11 +891,11 @@ Other Style Guides
       age: 28,
     };
 
-    function getProp(prop) {
-      return luke[prop];
+    function getProp( prop ) {
+      return luke[ prop ];
     }
 
-    const isJedi = getProp('jedi');
+    const isJedi = getProp( 'jedi' );
     ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -977,7 +968,7 @@ Other Style Guides
     // good
     function() {
       test();
-      console.log('doing stuff..');
+      console.log( 'doing stuff..' );
 
       //..other stuff..
 
@@ -991,26 +982,26 @@ Other Style Guides
     }
 
     // bad - unnecessary function call
-    function(hasName) {
+    function( hasName ) {
       const name = getName();
 
-      if (!hasName) {
+      if ( !hasName ) {
         return false;
       }
 
-      this.setFirstName(name);
+      this.setFirstName( name );
 
       return true;
     }
 
     // good
-    function(hasName) {
-      if (!hasName) {
+    function( hasName ) {
+      if ( !hasName ) {
         return false;
       }
 
       const name = getName();
-      this.setFirstName(name);
+      this.setFirstName( name );
 
       return true;
     }
@@ -1027,7 +1018,7 @@ Other Style Guides
     // we know this wouldn't work (assuming there
     // is no notDefined global variable)
     function example() {
-      console.log(notDefined); // => throws a ReferenceError
+      console.log( notDefined ); // => throws a ReferenceError
     }
 
     // creating a variable declaration after you
@@ -1035,7 +1026,7 @@ Other Style Guides
     // variable hoisting. Note: the assignment
     // value of `true` is not hoisted.
     function example() {
-      console.log(declaredButNotAssigned); // => undefined
+      console.log( declaredButNotAssigned ); // => undefined
       var declaredButNotAssigned = true;
     }
 
@@ -1044,14 +1035,14 @@ Other Style Guides
     // which means our example could be rewritten as:
     function example() {
       let declaredButNotAssigned;
-      console.log(declaredButNotAssigned); // => undefined
+      console.log( declaredButNotAssigned ); // => undefined
       declaredButNotAssigned = true;
     }
 
     // using const and let
     function example() {
-      console.log(declaredButNotAssigned); // => throws a ReferenceError
-      console.log(typeof declaredButNotAssigned); // => throws a ReferenceError
+      console.log( declaredButNotAssigned ); // => throws a ReferenceError
+      console.log( typeof declaredButNotAssigned ); // => throws a ReferenceError
       const declaredButNotAssigned = true;
     }
     ```
@@ -1060,12 +1051,12 @@ Other Style Guides
 
     ```javascript
     function example() {
-      console.log(anonymous); // => undefined
+      console.log( anonymous ); // => undefined
 
       anonymous(); // => TypeError anonymous is not a function
 
       var anonymous = function() {
-        console.log('anonymous function expression');
+        console.log( 'anonymous function expression' );
       };
     }
     ```
@@ -1074,26 +1065,26 @@ Other Style Guides
 
     ```javascript
     function example() {
-      console.log(named); // => undefined
+      console.log( named ); // => undefined
 
       named(); // => TypeError named is not a function
 
       superPower(); // => ReferenceError superPower is not defined
 
       var named = function superPower() {
-        console.log('Flying');
+        console.log( 'Flying' );
       };
     }
 
     // the same is true when the function name
     // is the same as the variable name.
     function example() {
-      console.log(named); // => undefined
+      console.log( named ); // => undefined
 
       named(); // => TypeError named is not a function
 
       var named = function named() {
-        console.log('named');
+        console.log( 'named' );
       }
     }
     ```
@@ -1105,7 +1096,7 @@ Other Style Guides
       superPower(); // => Flying
 
       function superPower() {
-        console.log('Flying');
+        console.log( 'Flying' );
       }
     }
     ```
@@ -1128,7 +1119,7 @@ Other Style Guides
     + **Strings** evaluate to **false** if an empty string `''`, otherwise **true**
 
     ```javascript
-    if ([0]) {
+    if ( [ 0 ] ) {
       // true
       // An array is an object, objects evaluate to true
     }
@@ -1138,22 +1129,22 @@ Other Style Guides
 
     ```javascript
     // bad
-    if (name !== '') {
+    if ( name !== '' ) {
       // ...stuff...
     }
 
     // good
-    if (name) {
+    if ( name ) {
       // ...stuff...
     }
 
     // bad
-    if (collection.length > 0) {
+    if ( collection.length > 0 ) {
       // ...stuff...
     }
 
     // good
-    if (collection.length) {
+    if ( collection.length ) {
       // ...stuff...
     }
     ```
@@ -1169,14 +1160,14 @@ Other Style Guides
 
     ```javascript
     // bad
-    if (test)
+    if ( test )
       return false;
 
     // good
-    if (test) return false;
+    if ( test ) return false;
 
     // good
-    if (test) {
+    if ( test ) {
       return false;
     }
 
@@ -1194,7 +1185,7 @@ Other Style Guides
 
     ```javascript
     // bad
-    if (test) {
+    if ( test ) {
       thing1();
       thing2();
     }
@@ -1203,7 +1194,7 @@ Other Style Guides
     }
 
     // good
-    if (test) {
+    if ( test ) {
       thing1();
       thing2();
     } else {
@@ -1226,7 +1217,7 @@ Other Style Guides
     //
     // @param {String} tag
     // @return {Element} element
-    function make(tag) {
+    function make( tag ) {
 
       // ...stuff...
 
@@ -1241,7 +1232,7 @@ Other Style Guides
      * @param {String} tag
      * @return {Element} element
      */
-    function make(tag) {
+    function make( tag ) {
 
       // ...stuff...
 
@@ -1261,7 +1252,7 @@ Other Style Guides
 
     // bad
     function getType() {
-      console.log('fetching type...');
+      console.log( 'fetching type...' );
       // set the default type to 'no type'
       const type = this._type || 'no type';
 
@@ -1270,7 +1261,7 @@ Other Style Guides
 
     // good
     function getType() {
-      console.log('fetching type...');
+      console.log( 'fetching type...' );
 
       // set the default type to 'no type'
       const type = this._type || 'no type';
@@ -1357,7 +1348,7 @@ Other Style Guides
     });
     ```
 
-  - [18.3](#18.3) <a name='18.3'></a> Place 1 space before the opening parenthesis in control statements (`if`, `while` etc.). Place no space before the argument list in function calls and declarations.
+  - [18.3](#18.3) <a name='18.3'></a> Place 1 space before the opening parenthesis in control statements (`if`, `while` etc.) and around the arguments.
 
     ```javascript
     // bad
@@ -1366,7 +1357,7 @@ Other Style Guides
     }
 
     // good
-    if (isJedi) {
+    if ( isJedi ) {
       fight();
     }
 
@@ -1377,8 +1368,30 @@ Other Style Guides
 
     // good
     function fight() {
-      console.log('Swooosh!');
+      console.log( 'Swooosh!' );
     }
+    ```
+ 
+  - [18.3](#18.3a) <a name='18.3a'></a> Put spaces around all arguments and property getters except integer array indices.
+ 
+    ```javascript
+    // bad
+    const foo = ['foo', 'bar'];
+    
+    // bad
+    const foo['bar'] = 'baz';
+    
+    // bad
+    const foo = bar[ 0 ];
+    
+    // good
+    const foo = [ 'foo', 'bar' ];
+    
+    // good
+    const foo[ 'bar' ] = 'baz';
+    
+    // good
+    const foo = bar[0];
     ```
 
   - [18.4](#18.4) <a name='18.4'></a> Set off operators with spaces.
@@ -1395,24 +1408,24 @@ Other Style Guides
 
     ```javascript
     // bad
-    (function(global) {
+    (function( global ) {
       // ...stuff...
-    })(this);
+    })( this );
     ```
 
     ```javascript
     // bad
-    (function(global) {
+    (function( global ) {
       // ...stuff...
-    })(this);↵
+    })( this );↵
     ↵
     ```
 
     ```javascript
     // good
-    (function(global) {
+    (function( global ) {
       // ...stuff...
-    })(this);↵
+    })( this );↵
     ```
 
   - [18.6](#18.6) <a name='18.6'></a> Use indentation when making long method chains. Use a leading dot, which
@@ -1420,39 +1433,39 @@ Other Style Guides
 
     ```javascript
     // bad
-    $('#items').find('.selected').highlight().end().find('.open').updateCount();
+    $( '#items' ).find( '.selected' ).highlight().end().find( '.open' ).updateCount();
 
     // bad
-    $('#items').
-      find('.selected').
+    $( '#items' ).
+      find( '.selected' ).
         highlight().
         end().
-      find('.open').
+      find( '.open' ).
         updateCount();
 
     // good
-    $('#items')
-      .find('.selected')
+    $( '#items' )
+      .find( '.selected' )
         .highlight()
         .end()
-      .find('.open')
+      .find( '.open' )
         .updateCount();
 
     // bad
-    const leds = stage.selectAll('.led').data(data).enter().append('svg:svg').class('led', true)
-        .attr('width', (radius + margin) * 2).append('svg:g')
-        .attr('transform', 'translate(' + (radius + margin) + ',' + (radius + margin) + ')')
-        .call(tron.led);
+    const leds = stage.selectAll( '.led' ).data( data ).enter().append( 'svg:svg' ).class( 'led', true )
+        .attr( 'width', ( radius + margin ) * 2 ).append( 'svg:g' )
+        .attr( 'transform', 'translate(' + ( radius + margin ) + ',' + ( radius + margin ) + ')' )
+        .call( tron.led );
 
     // good
-    const leds = stage.selectAll('.led')
-        .data(data)
-      .enter().append('svg:svg')
-        .classed('led', true)
-        .attr('width', (radius + margin) * 2)
-      .append('svg:g')
-        .attr('transform', 'translate(' + (radius + margin) + ',' + (radius + margin) + ')')
-        .call(tron.led);
+    const leds = stage.selectAll( '.led' )
+        .data( data )
+      .enter().append( 'svg:svg' )
+        .classed( 'led', true )
+        .attr( 'width', (radius + margin) * 2 )
+      .append( 'svg:g' )
+        .attr( 'transform', 'translate(' + ( radius + margin ) + ',' + ( radius + margin ) + ')')
+        .call( tron.led );
     ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -1580,7 +1593,7 @@ Other Style Guides
     const totalScore = this.reviewScore + '';
 
     // good
-    const totalScore = String(this.reviewScore);
+    const totalScore = String( this.reviewScore );
     ```
 
   - [21.3](#21.3) <a name='21.3'></a> Use `parseInt` for Numbers and always with a radix for type casting.
@@ -1589,7 +1602,7 @@ Other Style Guides
     const inputValue = '4';
 
     // bad
-    const val = new Number(inputValue);
+    const val = new Number( inputValue );
 
     // bad
     const val = +inputValue;
@@ -1598,13 +1611,13 @@ Other Style Guides
     const val = inputValue >> 0;
 
     // bad
-    const val = parseInt(inputValue);
+    const val = parseInt( inputValue );
 
     // good
-    const val = Number(inputValue);
+    const val = Number( inputValue );
 
     // good
-    const val = parseInt(inputValue, 10);
+    const val = parseInt( inputValue, 10 );
     ```
 
   - [21.4](#21.4) <a name='21.4'></a> If for whatever reason you are doing something wild and `parseInt` is your bottleneck and need to use Bitshift for [performance reasons](http://jsperf.com/coercion-vs-casting/3), leave a comment explaining why and what you're doing.
@@ -1633,10 +1646,10 @@ Other Style Guides
     const age = 0;
 
     // bad
-    const hasAge = new Boolean(age);
+    const hasAge = new Boolean( age );
 
     // good
-    const hasAge = Boolean(age);
+    const hasAge = Boolean( age );
 
     // good
     const hasAge = !!age;
@@ -1678,7 +1691,7 @@ Other Style Guides
 
     ```javascript
     // bad
-    function user(options) {
+    function user( options ) {
       this.name = options.name;
     }
 
@@ -1688,7 +1701,7 @@ Other Style Guides
 
     // good
     class User {
-      constructor(options) {
+      constructor( options ) {
         this.name = options.name;
       }
     }
@@ -1716,7 +1729,7 @@ Other Style Guides
     function foo() {
       const self = this;
       return function() {
-        console.log(self);
+        console.log( self );
       };
     }
 
@@ -1724,14 +1737,14 @@ Other Style Guides
     function foo() {
       const that = this;
       return function() {
-        console.log(that);
+        console.log( that );
       };
     }
 
     // good
     function foo() {
       return () => {
-        console.log(this);
+        console.log( this );
       };
     }
     ```
@@ -1793,10 +1806,10 @@ Other Style Guides
     dragon.getAge();
 
     // bad
-    dragon.age(25);
+    dragon.age( 25 );
 
     // good
-    dragon.setAge(25);
+    dragon.setAge( 25 );
     ```
 
   - [23.3](#23.3) <a name='23.3'></a> If the property is a `boolean`, use `isVal()` or `hasVal()`.
@@ -1817,16 +1830,16 @@ Other Style Guides
 
     ```javascript
     class Jedi {
-      constructor(options = {}) {
+      constructor( options = {} ) {
         const lightsaber = options.lightsaber || 'blue';
-        this.set('lightsaber', lightsaber);
+        this.set( 'lightsaber', lightsaber );
       }
 
-      set(key, val) {
+      set( key, val) {
         this[key] = val;
       }
 
-      get(key) {
+      get( key ) {
         return this[key];
       }
     }
@@ -1841,11 +1854,11 @@ Other Style Guides
 
     ```javascript
     // bad
-    $(this).trigger('listingUpdated', listing.id);
+    $( this ).trigger( 'listingUpdated', listing.id );
 
     ...
 
-    $(this).on('listingUpdated', function(e, listingId) {
+    $( this ).on( 'listingUpdated', function( e, listingId ) {
       // do something with listingId
     });
     ```
@@ -1854,11 +1867,11 @@ Other Style Guides
 
     ```javascript
     // good
-    $(this).trigger('listingUpdated', { listingId: listing.id });
+    $( this ).trigger( 'listingUpdated', { listingId: listing.id } );
 
     ...
 
-    $(this).on('listingUpdated', function(e, data) {
+    $( this ).on( 'listingUpdated', function( e, data ) {
       // do something with data.listingId
     });
     ```
@@ -1872,13 +1885,13 @@ Other Style Guides
 
     ```javascript
     // bad
-    const sidebar = $('.sidebar');
+    const sidebar = $( '.sidebar' );
 
     // good
-    const $sidebar = $('.sidebar');
+    const $sidebar = $( '.sidebar' );
 
     // good
-    const $sidebarBtn = $('.sidebar-btn');
+    const $sidebarBtn = $( '.sidebar-btn' );
     ```
 
   - [25.2](#25.2) <a name='25.2'></a> Cache jQuery lookups.
@@ -1886,18 +1899,18 @@ Other Style Guides
     ```javascript
     // bad
     function setSidebar() {
-      $('.sidebar').hide();
+      $( '.sidebar' ).hide();
 
       // ...stuff...
 
-      $('.sidebar').css({
+      $( '.sidebar' ).css({
         'background-color': 'pink'
       });
     }
 
     // good
     function setSidebar() {
-      const $sidebar = $('.sidebar');
+      const $sidebar = $( '.sidebar' );
       $sidebar.hide();
 
       // ...stuff...
@@ -1913,19 +1926,19 @@ Other Style Guides
 
     ```javascript
     // bad
-    $('ul', '.sidebar').hide();
+    $( 'ul', '.sidebar' ).hide();
 
     // bad
-    $('.sidebar').find('ul').hide();
+    $( '.sidebar' ).find( 'ul' ).hide();
 
     // good
-    $('.sidebar ul').hide();
+    $( '.sidebar ul' ).hide();
 
     // good
-    $('.sidebar > ul').hide();
+    $( '.sidebar > ul' ).hide();
 
     // good
-    $sidebar.find('ul').hide();
+    $sidebar.find( 'ul' ).hide();
     ```
 
 **[⬆ back to top](#table-of-contents)**
