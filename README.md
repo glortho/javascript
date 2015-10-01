@@ -349,6 +349,25 @@
     }
     ```
 
+    When destructuring a large object, do it at the top of the closure on its
+    own, broken into separate lines when more than two objects are being
+    destructured:
+
+    ```javascript
+    // bad
+    function getFullName() {
+      const { foo: { bar, baz }, bar: { bang } } = this;
+    }
+
+    // good
+    function getFullName() {
+      const { 
+        bar: { bang },
+        foo: { bar, baz } ,
+      } = this;
+    }
+    ```
+
   - [5.2](#5.2) <a name='5.2'></a> Use array destructuring.
 
     ```javascript
