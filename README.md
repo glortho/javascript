@@ -1,4 +1,4 @@
-# Sanity Preserving JavaScript Style Guide() {
+# ESanity JavaScript Style Guide() {
 
 *A mostly reasonable approach to JavaScript, based on the Airbnb styleguide.*
 
@@ -187,15 +187,17 @@
       id: 5,
       name: 'San Francisco',
     };
-    obj[ getKey( 'enabled' ) ] = true;
+    obj[getKey( 'enabled' )] = true;
 
     // good
     const obj = {
       id: 5,
       name: 'San Francisco',
-      [ getKey( 'enabled' ) ]: true,
+      [getKey( 'enabled' )]: true,
     };
     ```
+
+  Note that computed property names do not have whitespace between the brackets and computed name as other variable property getters do.
 
   <a name="es6-object-shorthand"></a>
   - [3.5](#3.5) <a name='3.5'></a> Use object method shorthand.
