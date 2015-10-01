@@ -79,10 +79,10 @@
     **Component Naming**: Use the filename as the component name. For example, `reservation_card.js` should have a reference name of `ReservationCard`. However, for root components of a directory, use `index.js` as the filename and use the directory name as the component name:
     ```javascript
     // bad
-    const Footer = require('./footer/footer.jsx')
+    const Footer = require('./footer/footer.js')
 
     // bad
-    const Footer = require('./footer/index.jsx')
+    const Footer = require('./footer/index.js')
 
     // good (note trailing slash)
     const Footer = require('./footer/')
