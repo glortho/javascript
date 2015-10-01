@@ -6,7 +6,6 @@
 
   1. [Basic Rules](#basic-rules)
   1. [Naming](#naming)
-  1. [Declaration](#declaration)
   1. [Alignment](#alignment)
   1. [Quotes](#quotes)
   1. [Spacing](#spacing)
@@ -42,17 +41,33 @@
   }
   ```
 
+## Export at the end of the file
+
+  ```javascript
+  // bad
+  export default class Listing extends React.Component {
+    ...
+  }
+
+  // good
+  class Listing extends React.Component {
+    ...
+  }
+
+  export default Listing;
+  ```
+
 ## Naming
 
-  - **Extensions**: Use `.jsx` extension for React components.
-  - **Filename**: Use PascalCase for filenames. E.g., `ReservationCard.jsx`.
+  - **Extensions**: Use `.js` extension for React components.
+  - **Filename**: Use snake_case for filenames. E.g., `reservation_card.js`.
   - **Reference Naming**: Use PascalCase for React components and camelCase for their instances:
     ```javascript
     // bad
-    const reservationCard = require('./ReservationCard');
+    const reservationCard = require('./reservation_card');
 
     // good
-    const ReservationCard = require('./ReservationCard');
+    const ReservationCard = require('./reservation_card');
 
     // bad
     const ReservationItem = <ReservationCard />;
@@ -61,32 +76,16 @@
     const reservationItem = <ReservationCard />;
     ```
 
-    **Component Naming**: Use the filename as the component name. For example, `ReservationCard.jsx` should have a reference name of `ReservationCard`. However, for root components of a directory, use `index.jsx` as the filename and use the directory name as the component name:
+    **Component Naming**: Use the filename as the component name. For example, `reservation_card.js` should have a reference name of `ReservationCard`. However, for root components of a directory, use `index.js` as the filename and use the directory name as the component name:
     ```javascript
     // bad
-    const Footer = require('./Footer/Footer.jsx')
+    const Footer = require('./footer/footer.jsx')
 
     // bad
-    const Footer = require('./Footer/index.jsx')
+    const Footer = require('./footer/index.jsx')
 
-    // good
-    const Footer = require('./Footer')
-    ```
-
-
-## Declaration
-  - Do not use displayName for naming components. Instead, name the component by reference.
-
-    ```javascript
-    // bad
-    export default React.createClass({
-      displayName: 'ReservationCard',
-      // stuff goes here
-    });
-
-    // good
-    export default class ReservationCard extends React.Component {
-    }
+    // good (note trailing slash)
+    const Footer = require('./footer/')
     ```
 
 ## Alignment
@@ -99,8 +98,8 @@
 
     // good
     <Foo
-      superLongParam="bar"
-      anotherSuperLongParam="baz"
+      superLongParam        = "bar"
+      anotherSuperLongParam = "baz"
     />
 
     // if props fit in one line then keep it on the same line
@@ -108,8 +107,8 @@
 
     // children get indented normally
     <Foo
-      superLongParam="bar"
-      anotherSuperLongParam="baz"
+      superLongParam        = "bar"
+      anotherSuperLongParam = "baz"
     >
       <Spazz />
     </Foo>
@@ -153,14 +152,14 @@
     ```javascript
     // bad
     <Foo
-      UserName="hello"
-      phone_number={12345678}
+      UserName     = "hello"
+      phone_number = {12345678}
     />
 
     // good
     <Foo
-      userName="hello"
-      phoneNumber={12345678}
+      userName    = "hello"
+      phoneNumber = {12345678}
     />
     ```
 
@@ -204,13 +203,13 @@
     ```javascript
     // bad
     <Foo
-      bar="bar"
-      baz="baz" />
+      bar = "bar"
+      baz = "baz" />
 
     // good
     <Foo
-      bar="bar"
-      baz="baz"
+      bar = "bar"
+      baz = "baz"
     />
     ```
 
@@ -259,18 +258,20 @@
 
   ```javascript
   import React, { Component, PropTypes } from 'react';
+
+  const { number, string } = PropTypes;
   
   const propTypes = {
-    id: PropTypes.number.isRequired,
-    url: PropTypes.string.isRequired,
-    text: PropTypes.string,
+    id:   number.isRequired,
+    url:  string.isRequired,
+    text: string,
   };
   
   const defaultProps = {
     text: 'Hello World',
   };
   
-  export default class Link extends Component {
+  class Link extends Component {
     static methodsAreOk() {
       return true;
     }
@@ -280,13 +281,14 @@
     }
   }
   
-  Link.propTypes = propTypes;
+  Link.propTypes    = propTypes;
   Link.defaultProps = defaultProps;
+
+  export default Link;
   ```
 
   - Ordering for React.createClass:
 
-  1. displayName
   1. propTypes
   1. contextTypes
   1. childContextTypes
